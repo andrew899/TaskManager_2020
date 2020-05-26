@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,27 +18,102 @@ namespace TaskManager_2020
         public MainWindow()
         {
             InitializeComponent();
+
+            GetAllDrives();
         }
 
-        Process[] proc;
+        void SetProcessListViewColumns(string[] columnNames)
+        {
+            if(processes_listView.Columns.Count > 0)
+                return;
+
+            foreach(var name in columnNames)
+            {
+                processes_listView.Columns.Add(name, 100, HorizontalAlignment.Center);
+            }
+
+            processes_listView.FullRowSelect = true;
+            processes_listView.GridLines = true;
+            processes_listView.View = View.Details;
+        }
+
+        void SetDrivesListViewColumns(string[] columnNames)
+        {
+            if (processes_listView.Columns.Count > 0)
+                return;
+
+            foreach (var name in columnNames)
+            {
+                drives_listView.Columns.Add(name, 100, HorizontalAlignment.Center);
+            }
+
+            drives_listView.FullRowSelect = true;
+            drives_listView.GridLines = true;
+            drives_listView.View = View.Details;
+        }
+
+        void GetAllDrives()
+        {
+            var columnNames = new string[]
+                {
+                    "Name",
+                    "Type",
+                    "Format",
+                    "Label",
+                    "Free space",
+                    "Total space"
+                };
+            SetDrivesListViewColumns(columnNames);
+
+            var allDrives = DriveInfo.GetDrives();
+
+            foreach( var d in allDrives)
+            {
+                if(d.IsReady == false)
+                    continue;
+
+                var row = new string[] 
+                { 
+                    d.Name, 
+                    d.DriveType.ToString(), 
+                    d.DriveFormat, 
+                    d.VolumeLabel, 
+                    d.AvailableFreeSpace.ToString(), 
+                    d.TotalSize.ToString() 
+                };
+                var listViewItem = new ListViewItem(row);
+                listViewItem.Tag = d;
+
+                drives_listView.Items.Add(listViewItem);
+            }
+        }
+
         void GetAllProcess()
         {
-            proc = Process.GetProcesses();
+            var columnNames = new string[]
+                {
+                    "Name",
+                    "Id",
+                    "Base priority"
+                };
+            SetProcessListViewColumns(columnNames);
 
-            Processes_listView.Items.Clear();
+            var proc = Process.GetProcesses();
+
+            processes_listView.Items.Clear();
             
             foreach (Process p in proc)
             {
-                var row = new string[] { p.ProcessName, p.Id.ToString() };
+                var row = new string[] { p.ProcessName, p.Id.ToString(), p.BasePriority.ToString() };
                 var listViewItem = new ListViewItem(row);
                 listViewItem.Tag = p;
 
-                Processes_listView.Items.Add(listViewItem);
+                processes_listView.Items.Add(listViewItem);
             }
 
-            Processes_listView.Sorting = SortOrder.Ascending;
+            processes_listView.Sorting = SortOrder.Ascending;
 
-            Processes_listView.Show();
+            processes_listView.Show();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -49,9 +125,9 @@ namespace TaskManager_2020
         {
             try
             {
-                for (var i = 0; i < Processes_listView.SelectedItems.Count; i++)
+                for (var i = 0; i < processes_listView.SelectedItems.Count; i++)
                 {
-                    var process = Processes_listView.SelectedItems[i].Tag as Process;
+                    var process = processes_listView.SelectedItems[i].Tag as Process;
                     if(process != null)
                         process.Kill();
                 }
@@ -169,7 +245,5 @@ namespace TaskManager_2020
             ramUsage_progressBar.Value = (int)ramUsage_performanceCounter.NextValue();
             ramUsage_label.Text = "RAM usage: " + ramUsage_progressBar.Value.ToString() + " %";
         }
-
-        
     }
 }

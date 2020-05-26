@@ -43,25 +43,24 @@
             this.taskManager_timer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Processes = new System.Windows.Forms.TabPage();
-            this.SystemInfo = new System.Windows.Forms.TabPage();
-            this.Processes_listView = new System.Windows.Forms.ListView();
-            this.ProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ProcessId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.newTask_btn = new System.Windows.Forms.Button();
             this.EndTask_btn = new System.Windows.Forms.Button();
-            this.cpuUsage_progressBar = new System.Windows.Forms.ProgressBar();
-            this.ramUsage_progressBar = new System.Windows.Forms.ProgressBar();
-            this.cpuUsage_label = new System.Windows.Forms.Label();
+            this.processes_listView = new System.Windows.Forms.ListView();
+            this.SystemInfo = new System.Windows.Forms.TabPage();
+            this.drives_listView = new System.Windows.Forms.ListView();
             this.ramUsage_label = new System.Windows.Forms.Label();
+            this.cpuUsage_label = new System.Windows.Forms.Label();
+            this.ramUsage_progressBar = new System.Windows.Forms.ProgressBar();
+            this.cpuUsage_progressBar = new System.Windows.Forms.ProgressBar();
             this.systemInfo_timer = new System.Windows.Forms.Timer(this.components);
             this.cpuUsage_performanceCounter = new System.Diagnostics.PerformanceCounter();
             this.ramUsage_performanceCounter = new System.Diagnostics.PerformanceCounter();
-            this.newTask_btn = new System.Windows.Forms.Button();
             this.MainWindow_menuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Processes.SuspendLayout();
-            this.SystemInfo.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.SystemInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpuUsage_performanceCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ramUsage_performanceCounter)).BeginInit();
             this.SuspendLayout();
@@ -92,19 +91,19 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.refreshToolStripMenuItem.Text = "&Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(110, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.closeToolStripMenuItem.Text = "&Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -124,13 +123,13 @@
             this.fastToolStripMenuItem,
             this.stopToolStripMenuItem});
             this.refreshSpeedToolStripMenuItem.Name = "refreshSpeedToolStripMenuItem";
-            this.refreshSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshSpeedToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.refreshSpeedToolStripMenuItem.Text = "&Refresh speed";
             // 
             // slowToolStripMenuItem
             // 
             this.slowToolStripMenuItem.Name = "slowToolStripMenuItem";
-            this.slowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.slowToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.slowToolStripMenuItem.Text = "&Slow";
             this.slowToolStripMenuItem.Click += new System.EventHandler(this.slowToolStripMenuItem_Click);
             // 
@@ -139,21 +138,21 @@
             this.normalToolStripMenuItem.Checked = true;
             this.normalToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
-            this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.normalToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.normalToolStripMenuItem.Text = "&Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.normalToolStripMenuItem_Click);
             // 
             // fastToolStripMenuItem
             // 
             this.fastToolStripMenuItem.Name = "fastToolStripMenuItem";
-            this.fastToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fastToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.fastToolStripMenuItem.Text = "&Fast";
             this.fastToolStripMenuItem.Click += new System.EventHandler(this.fastToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.stopToolStripMenuItem.Text = "&Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
@@ -177,7 +176,7 @@
             // Processes
             // 
             this.Processes.Controls.Add(this.panel1);
-            this.Processes.Controls.Add(this.Processes_listView);
+            this.Processes.Controls.Add(this.processes_listView);
             this.Processes.Location = new System.Drawing.Point(4, 22);
             this.Processes.Name = "Processes";
             this.Processes.Padding = new System.Windows.Forms.Padding(3);
@@ -185,50 +184,6 @@
             this.Processes.TabIndex = 0;
             this.Processes.Text = "Processes";
             this.Processes.UseVisualStyleBackColor = true;
-            // 
-            // SystemInfo
-            // 
-            this.SystemInfo.Controls.Add(this.ramUsage_label);
-            this.SystemInfo.Controls.Add(this.cpuUsage_label);
-            this.SystemInfo.Controls.Add(this.ramUsage_progressBar);
-            this.SystemInfo.Controls.Add(this.cpuUsage_progressBar);
-            this.SystemInfo.Location = new System.Drawing.Point(4, 22);
-            this.SystemInfo.Name = "SystemInfo";
-            this.SystemInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.SystemInfo.Size = new System.Drawing.Size(686, 460);
-            this.SystemInfo.TabIndex = 1;
-            this.SystemInfo.Text = "System info";
-            this.SystemInfo.UseVisualStyleBackColor = true;
-            // 
-            // Processes_listView
-            // 
-            this.Processes_listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Processes_listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ProcessName,
-            this.ProcessId});
-            this.Processes_listView.FullRowSelect = true;
-            this.Processes_listView.GridLines = true;
-            this.Processes_listView.HideSelection = false;
-            this.Processes_listView.Location = new System.Drawing.Point(0, 0);
-            this.Processes_listView.Margin = new System.Windows.Forms.Padding(2);
-            this.Processes_listView.Name = "Processes_listView";
-            this.Processes_listView.Size = new System.Drawing.Size(694, 407);
-            this.Processes_listView.TabIndex = 5;
-            this.Processes_listView.UseCompatibleStateImageBehavior = false;
-            this.Processes_listView.View = System.Windows.Forms.View.Details;
-            // 
-            // ProcessName
-            // 
-            this.ProcessName.Text = "Name";
-            this.ProcessName.Width = 120;
-            // 
-            // ProcessId
-            // 
-            this.ProcessId.Text = "Id";
-            this.ProcessId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ProcessId.Width = 120;
             // 
             // panel1
             // 
@@ -243,6 +198,18 @@
             this.panel1.Size = new System.Drawing.Size(680, 46);
             this.panel1.TabIndex = 6;
             // 
+            // newTask_btn
+            // 
+            this.newTask_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.newTask_btn.Location = new System.Drawing.Point(4, 10);
+            this.newTask_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.newTask_btn.Name = "newTask_btn";
+            this.newTask_btn.Size = new System.Drawing.Size(67, 31);
+            this.newTask_btn.TabIndex = 1;
+            this.newTask_btn.Text = "New Task";
+            this.newTask_btn.UseVisualStyleBackColor = true;
+            this.newTask_btn.Click += new System.EventHandler(this.newTask_btn_Click);
+            // 
             // EndTask_btn
             // 
             this.EndTask_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -253,22 +220,60 @@
             this.EndTask_btn.TabIndex = 0;
             this.EndTask_btn.Text = "End Task";
             this.EndTask_btn.UseVisualStyleBackColor = true;
+            this.EndTask_btn.Click += new System.EventHandler(this.EndTask_btn_Click);
             // 
-            // cpuUsage_progressBar
+            // processes_listView
             // 
-            this.cpuUsage_progressBar.Location = new System.Drawing.Point(249, 6);
-            this.cpuUsage_progressBar.Name = "cpuUsage_progressBar";
-            this.cpuUsage_progressBar.Size = new System.Drawing.Size(429, 23);
-            this.cpuUsage_progressBar.Step = 1;
-            this.cpuUsage_progressBar.TabIndex = 0;
+            this.processes_listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.processes_listView.FullRowSelect = true;
+            this.processes_listView.GridLines = true;
+            this.processes_listView.HideSelection = false;
+            this.processes_listView.Location = new System.Drawing.Point(0, 0);
+            this.processes_listView.Margin = new System.Windows.Forms.Padding(2);
+            this.processes_listView.Name = "processes_listView";
+            this.processes_listView.Size = new System.Drawing.Size(694, 407);
+            this.processes_listView.TabIndex = 5;
+            this.processes_listView.UseCompatibleStateImageBehavior = false;
+            this.processes_listView.View = System.Windows.Forms.View.Details;
             // 
-            // ramUsage_progressBar
+            // SystemInfo
             // 
-            this.ramUsage_progressBar.Location = new System.Drawing.Point(249, 36);
-            this.ramUsage_progressBar.Name = "ramUsage_progressBar";
-            this.ramUsage_progressBar.Size = new System.Drawing.Size(429, 23);
-            this.ramUsage_progressBar.Step = 1;
-            this.ramUsage_progressBar.TabIndex = 1;
+            this.SystemInfo.Controls.Add(this.drives_listView);
+            this.SystemInfo.Controls.Add(this.ramUsage_label);
+            this.SystemInfo.Controls.Add(this.cpuUsage_label);
+            this.SystemInfo.Controls.Add(this.ramUsage_progressBar);
+            this.SystemInfo.Controls.Add(this.cpuUsage_progressBar);
+            this.SystemInfo.Location = new System.Drawing.Point(4, 22);
+            this.SystemInfo.Name = "SystemInfo";
+            this.SystemInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.SystemInfo.Size = new System.Drawing.Size(686, 460);
+            this.SystemInfo.TabIndex = 1;
+            this.SystemInfo.Text = "System info";
+            this.SystemInfo.UseVisualStyleBackColor = true;
+            // 
+            // drives_listView
+            // 
+            this.drives_listView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.drives_listView.FullRowSelect = true;
+            this.drives_listView.GridLines = true;
+            this.drives_listView.HideSelection = false;
+            this.drives_listView.Location = new System.Drawing.Point(3, 102);
+            this.drives_listView.Name = "drives_listView";
+            this.drives_listView.Size = new System.Drawing.Size(680, 355);
+            this.drives_listView.TabIndex = 4;
+            this.drives_listView.UseCompatibleStateImageBehavior = false;
+            this.drives_listView.View = System.Windows.Forms.View.Details;
+            // 
+            // ramUsage_label
+            // 
+            this.ramUsage_label.AutoSize = true;
+            this.ramUsage_label.Location = new System.Drawing.Point(8, 46);
+            this.ramUsage_label.Name = "ramUsage_label";
+            this.ramUsage_label.Size = new System.Drawing.Size(65, 13);
+            this.ramUsage_label.TabIndex = 3;
+            this.ramUsage_label.Text = "RAM Usage";
             // 
             // cpuUsage_label
             // 
@@ -279,14 +284,21 @@
             this.cpuUsage_label.TabIndex = 2;
             this.cpuUsage_label.Text = "CPU Usage";
             // 
-            // ramUsage_label
+            // ramUsage_progressBar
             // 
-            this.ramUsage_label.AutoSize = true;
-            this.ramUsage_label.Location = new System.Drawing.Point(8, 46);
-            this.ramUsage_label.Name = "ramUsage_label";
-            this.ramUsage_label.Size = new System.Drawing.Size(65, 13);
-            this.ramUsage_label.TabIndex = 3;
-            this.ramUsage_label.Text = "RAM Usage";
+            this.ramUsage_progressBar.Location = new System.Drawing.Point(249, 36);
+            this.ramUsage_progressBar.Name = "ramUsage_progressBar";
+            this.ramUsage_progressBar.Size = new System.Drawing.Size(429, 23);
+            this.ramUsage_progressBar.Step = 1;
+            this.ramUsage_progressBar.TabIndex = 1;
+            // 
+            // cpuUsage_progressBar
+            // 
+            this.cpuUsage_progressBar.Location = new System.Drawing.Point(249, 6);
+            this.cpuUsage_progressBar.Name = "cpuUsage_progressBar";
+            this.cpuUsage_progressBar.Size = new System.Drawing.Size(429, 23);
+            this.cpuUsage_progressBar.Step = 1;
+            this.cpuUsage_progressBar.TabIndex = 0;
             // 
             // systemInfo_timer
             // 
@@ -306,18 +318,6 @@
             this.ramUsage_performanceCounter.CounterName = "% Committed Bytes In Use";
             this.ramUsage_performanceCounter.MachineName = "DESKTOP-MAIN";
             // 
-            // newTask_btn
-            // 
-            this.newTask_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newTask_btn.Location = new System.Drawing.Point(4, 10);
-            this.newTask_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.newTask_btn.Name = "newTask_btn";
-            this.newTask_btn.Size = new System.Drawing.Size(67, 31);
-            this.newTask_btn.TabIndex = 1;
-            this.newTask_btn.Text = "New Task";
-            this.newTask_btn.UseVisualStyleBackColor = true;
-            this.newTask_btn.Click += new System.EventHandler(this.newTask_btn_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,7 +326,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.MainWindow_menuStrip);
             this.MainMenuStrip = this.MainWindow_menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "Task Manager";
             this.Load += new System.EventHandler(this.MainWindow_Load);
@@ -335,9 +335,9 @@
             this.tabControl1.ResumeLayout(false);
             this.Processes.ResumeLayout(false);
             this.Processes.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.SystemInfo.ResumeLayout(false);
             this.SystemInfo.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cpuUsage_performanceCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ramUsage_performanceCounter)).EndInit();
             this.ResumeLayout(false);
@@ -363,9 +363,7 @@
         private System.Windows.Forms.TabPage Processes;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button EndTask_btn;
-        private System.Windows.Forms.ListView Processes_listView;
-        private System.Windows.Forms.ColumnHeader ProcessName;
-        private System.Windows.Forms.ColumnHeader ProcessId;
+        private System.Windows.Forms.ListView processes_listView;
         private System.Windows.Forms.TabPage SystemInfo;
         private System.Windows.Forms.Label ramUsage_label;
         private System.Windows.Forms.Label cpuUsage_label;
@@ -375,6 +373,7 @@
         private System.Diagnostics.PerformanceCounter cpuUsage_performanceCounter;
         private System.Diagnostics.PerformanceCounter ramUsage_performanceCounter;
         private System.Windows.Forms.Button newTask_btn;
+        private System.Windows.Forms.ListView drives_listView;
     }
 }
 
