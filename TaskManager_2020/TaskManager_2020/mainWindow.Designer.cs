@@ -54,15 +54,11 @@
             this.ramUsage_progressBar = new System.Windows.Forms.ProgressBar();
             this.cpuUsage_progressBar = new System.Windows.Forms.ProgressBar();
             this.systemInfo_timer = new System.Windows.Forms.Timer(this.components);
-            this.cpuUsage_performanceCounter = new System.Diagnostics.PerformanceCounter();
-            this.ramUsage_performanceCounter = new System.Diagnostics.PerformanceCounter();
             this.MainWindow_menuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Processes.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SystemInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cpuUsage_performanceCounter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ramUsage_performanceCounter)).BeginInit();
             this.SuspendLayout();
             // 
             // MainWindow_menuStrip
@@ -305,19 +301,6 @@
             this.systemInfo_timer.Enabled = true;
             this.systemInfo_timer.Tick += new System.EventHandler(this.systemInfo_timer_Tick);
             // 
-            // cpuUsage_performanceCounter
-            // 
-            this.cpuUsage_performanceCounter.CategoryName = "Processor";
-            this.cpuUsage_performanceCounter.CounterName = "% Privileged Time";
-            this.cpuUsage_performanceCounter.InstanceName = "_Total";
-            this.cpuUsage_performanceCounter.MachineName = "DESKTOP-MAIN";
-            // 
-            // ramUsage_performanceCounter
-            // 
-            this.ramUsage_performanceCounter.CategoryName = "Memory";
-            this.ramUsage_performanceCounter.CounterName = "% Committed Bytes In Use";
-            this.ramUsage_performanceCounter.MachineName = "DESKTOP-MAIN";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,8 +321,6 @@
             this.panel1.ResumeLayout(false);
             this.SystemInfo.ResumeLayout(false);
             this.SystemInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cpuUsage_performanceCounter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ramUsage_performanceCounter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,8 +351,6 @@
         private System.Windows.Forms.ProgressBar ramUsage_progressBar;
         private System.Windows.Forms.ProgressBar cpuUsage_progressBar;
         private System.Windows.Forms.Timer systemInfo_timer;
-        private System.Diagnostics.PerformanceCounter cpuUsage_performanceCounter;
-        private System.Diagnostics.PerformanceCounter ramUsage_performanceCounter;
         private System.Windows.Forms.Button newTask_btn;
         private System.Windows.Forms.ListView drives_listView;
     }

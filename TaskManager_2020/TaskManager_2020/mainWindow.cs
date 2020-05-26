@@ -19,7 +19,18 @@ namespace TaskManager_2020
         {
             InitializeComponent();
 
+            StartPerformanceCounters();
+
             GetAllDrives();
+        }
+
+        PerformanceCounter cpuUsage;
+        PerformanceCounter ramUsage;
+
+        void StartPerformanceCounters()
+        {
+            cpuUsage = new PerformanceCounter("Processor", "% Privileged Time", "_Total");
+            ramUsage = new PerformanceCounter("Memory", "% Committed Bytes in Use");
         }
 
         void SetProcessListViewColumns(string[] columnNames)
@@ -239,10 +250,10 @@ namespace TaskManager_2020
 
         private void systemInfo_timer_Tick(object sender, EventArgs e)
         {
-            cpuUsage_progressBar.Value = (int)cpuUsage_performanceCounter.NextValue();
+            cpuUsage_progressBar.Value = (int)cpuUsage.NextValue();
             cpuUsage_label.Text ="CPU usage: " + cpuUsage_progressBar.Value.ToString() + " %";
             
-            ramUsage_progressBar.Value = (int)ramUsage_performanceCounter.NextValue();
+            ramUsage_progressBar.Value = (int)ramUsage.NextValue();
             ramUsage_label.Text = "RAM usage: " + ramUsage_progressBar.Value.ToString() + " %";
         }
     }
