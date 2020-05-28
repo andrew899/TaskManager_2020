@@ -17,9 +17,10 @@ namespace TaskManager_2020
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            GetAllProcess();
+            GetProcessesToListView();
         }
 
+        // Systeminfo
         private void CheckCPUPerformanceInfo()
         {
             cpuUsage_progressBar.Value = CPUPerformance.GetCPUTatalUsageInPercent;
@@ -39,28 +40,6 @@ namespace TaskManager_2020
             SetDrivesInfoToView(drives.GetListAllDrives());
         }
 
-        private void SetDrivesInfoToView(List<ListViewItem> list)
-        {
-            drives_listView.Items.Clear();
-
-            foreach (var item in list)
-            {
-                drives_listView.Items.Add(item);
-            }
-        }
-
-        private void SetProcessListViewColumns(string[] columnNames)
-        {
-            foreach(var name in columnNames)
-            {
-                processes_listView.Columns.Add(name, 100, HorizontalAlignment.Center);
-            }
-
-            processes_listView.FullRowSelect = true;
-            processes_listView.GridLines = true;
-            processes_listView.View = View.Details;
-        }
-
         private void SetDrivesListViewColumns(string[] columnNames)
         {
             if (processes_listView.Columns.Count > 0)
@@ -76,38 +55,60 @@ namespace TaskManager_2020
             drives_listView.View = View.Details;
         }
 
-        
-
-        void GetAllProcess()
+        private void SetDrivesInfoToView(List<ListViewItem> list)
         {
-            var columnNames = new string[]
-                {
-                    "Name",
-                    "Id",
-                    "Base priority"
-                };
-            SetProcessListViewColumns(columnNames);
+            drives_listView.Items.Clear();
 
-            var proc = Process.GetProcesses();
-
-            processes_listView.Items.Clear();
-            
-            foreach (Process p in proc)
+            foreach (var item in list)
             {
-                var row = new string[] { p.ProcessName, p.Id.ToString(), p.BasePriority.ToString() };
-                var listViewItem = new ListViewItem(row);
-                listViewItem.Tag = p;
+                drives_listView.Items.Add(item);
+            }
 
-                processes_listView.Items.Add(listViewItem);
+            drives_listView.Show();
+        }
+
+        // Processes
+        private void GetProcessesToListView()
+        {
+            var processes = new ProcessesInfo();
+
+            SetProcessListViewColumns(processes.ColumnNames);
+
+            var processesToView = processes.GetAllProcess();
+            
+            SetProcessInfoToView(processesToView);
+        }
+
+        private void SetProcessListViewColumns(string[] columnNames)
+        {
+            if(processes_listView.Items.Count > 0)
+                return;
+
+            foreach(var name in columnNames)
+            {
+                processes_listView.Columns.Add(name, 100, HorizontalAlignment.Center);
+            }
+
+            processes_listView.FullRowSelect = true;
+            processes_listView.GridLines = true;
+            processes_listView.View = View.Details;
+        }
+
+        private void SetProcessInfoToView(List<ListViewItem> list)
+        {
+            processes_listView.Items.Clear();
+
+            foreach (var item in list)
+            {
+                processes_listView.Items.Add(item);
             }
 
             processes_listView.Sorting = SortOrder.Ascending;
 
             processes_listView.Show();
         }
-
-
-
+        
+        // Menu
         private void EndTask_btn_Click(object sender, EventArgs e)
         {
             try
@@ -119,9 +120,6 @@ namespace TaskManager_2020
                         process.Kill();
                 }
 
-                Thread.Sleep(50); // Whithout pause Item stays in list till next refresh.
-
-                GetAllProcess();
             }
             catch (Exception ex)
             {
@@ -144,12 +142,12 @@ namespace TaskManager_2020
             if(string.IsNullOrEmpty(filePath) == false)
                 Process.Start(filePath);
 
-            GetAllProcess();
+            GetProcessesToListView();
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GetAllProcess();
+            GetProcessesToListView();
             
             CheckDrivesInfo();
         }
@@ -227,9 +225,10 @@ namespace TaskManager_2020
             stopToolStripMenuItem.Checked = false;
         }
 
+        // Timers
         private void taskManagerTimer_Tick(object sender, EventArgs e)
         {
-            GetAllProcess();
+            GetProcessesToListView();
         }
 
         private void systemInfo_timer_Tick(object sender, EventArgs e)

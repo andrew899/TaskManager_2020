@@ -6,3 +6,4 @@ D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManage
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManager_2020.csproj.GenerateResource.cache
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManager_2020.exe
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManager_2020.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManager_2020.csprojAssemblyReference.cache
