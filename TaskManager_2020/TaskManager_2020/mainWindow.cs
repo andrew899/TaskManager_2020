@@ -8,6 +8,7 @@ namespace TaskManager_2020
 {
     public partial class MainWindow : Form
     {
+        private ProcessesInfo processes = new ProcessesInfo();
         public MainWindow()
         {
             InitializeComponent();
@@ -70,8 +71,6 @@ namespace TaskManager_2020
         // Processes
         private void GetProcessesToListView()
         {
-            var processes = new ProcessesInfo();
-
             SetProcessListViewColumns(processes.ColumnNames);
 
             var processesToView = processes.GetAllProcess();
@@ -228,7 +227,7 @@ namespace TaskManager_2020
         // Timers
         private void taskManagerTimer_Tick(object sender, EventArgs e)
         {
-            GetProcessesToListView();
+            //GetProcessesToListView();
         }
 
         private void systemInfo_timer_Tick(object sender, EventArgs e)
@@ -236,5 +235,6 @@ namespace TaskManager_2020
             CheckCPUPerformanceInfo();
             CheckRAMPerformanceInfo();
         }
+
     }
 }

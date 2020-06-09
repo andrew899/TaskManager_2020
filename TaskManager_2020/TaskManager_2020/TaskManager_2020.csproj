@@ -83,5 +83,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager_Processes\TaskManager_Processes.csproj">
+      <Project>{256fe186-e34d-4c69-8648-1d1bc6abc475}</Project>
+      <Name>TaskManager_Processes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
