@@ -15,28 +15,69 @@ namespace TaskManager_Processes
 
         public string ProcessName => process.ProcessName;
 
-        private readonly PerformanceCounter processRAMUsage;
-        public long ProcessRAMUsage => processRAMUsage.RawValue;
+        private string instanceName = string.Empty;
+
+        private PerformanceCounter processRAMUsage;
+        //public double ProcessRAMUsage => processRAMUsage.RawValue/1024.0/1024.0; // Mb
         public Process GetGetProcess()
         {
             return process;
         }
 
-        private readonly PerformanceCounter processCpuUsage;
-        public int ProcessCpuUsage => (int)processCpuUsage.NextValue();
+        private PerformanceCounter processCpuUsage;
+        //public int ProcessCpuUsage => (int)processCpuUsage.NextValue();
         //public int ProcessCpuUsage => 0;
+
+        public int GetProcessCpuUsage()
+        {
+            //var instance = GetProcessInstanceName(ProcessId);
+            //processCpuUsage = new PerformanceCounter("Process", "% Processor Time", instance, true);
+
+            //processCpuUsage = ProcessCpuCounter.GetPerfCounterForProcessId(ProcessId);
+
+            if(!IsRuning())
+                return -1;
+                
+            
+            if (string.IsNullOrEmpty(instanceName))
+                processCpuUsage = new PerformanceCounter("Process", "% Processor Time", ProcessName, true);
+            else
+                processCpuUsage = new PerformanceCounter("Process", "% Processor Time", instanceName, true);
+
+            return (int)processCpuUsage.NextValue();
+        }
+
+        public float GetProcessRAMUsage()
+        {
+            if (!IsRuning())
+                return -1;
+
+            if (string.IsNullOrEmpty(instanceName))
+                processRAMUsage = new PerformanceCounter("Process", "Working Set - Private", ProcessName, true);
+            else
+                processRAMUsage = new PerformanceCounter("Process", "Working Set - Private", instanceName, true);
+
+            return processRAMUsage.NextValue();
+        }
 
         public ProcessItem(Process processIn)
         {
             process = processIn;
 
-            //processCpuUsage = ProcessCpuCounter.GetPerfCounterForProcessId(processIn.Id);
+            //instanceName = ProcessCpuCounter.GetInstanceNameForProcessId(ProcessId);
 
             //var instance = GetProcessInstanceName(processIn.Id);
 
-            processCpuUsage = new PerformanceCounter("Process", "% Processor Time", processIn.ProcessName, true);
+            //processCpuUsage = new PerformanceCounter("Process", "% Processor Time", instanceName, true);
 
-            processRAMUsage = new PerformanceCounter("Process", "Working Set - Private", processIn.ProcessName, true);
+            //processRAMUsage = new PerformanceCounter("Process", "Working Set - Private", instanceName, true);
+        }
+
+        private bool IsRuning()
+        {
+            var isRunning = Process.GetProcesses().Select(p => p.Id == ProcessId).First();
+            
+            return isRunning;
         }
 
         //private static string GetProcessInstanceName(int pid)

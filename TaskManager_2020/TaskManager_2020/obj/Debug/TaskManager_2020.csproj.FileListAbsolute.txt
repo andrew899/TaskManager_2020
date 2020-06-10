@@ -10,3 +10,5 @@ D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManage
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Debug\TaskManager_Processes.dll
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Debug\TaskManager_Processes.pdb
 D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Debug\TaskManager_2020.csproj.CopyComplete
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Debug\DrivesManager.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Debug\DrivesManager.pdb

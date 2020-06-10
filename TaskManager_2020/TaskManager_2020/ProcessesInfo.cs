@@ -13,6 +13,9 @@ namespace TaskManager_2020
     {
         private ProcessesManger processes = new ProcessesManger();
 
+        private List<ListViewItem> listViewItems = new List<ListViewItem>();
+        public List<ListViewItem> ListViewItems => listViewItems;
+
         public string[] ColumnNames = new string[]
                 {
                     "Name",
@@ -21,9 +24,9 @@ namespace TaskManager_2020
                     "RAM Usage"
                 };
 
-        public List<ListViewItem> GetAllProcess()
+        public void SetProcessesListView()
         {
-            List<ListViewItem> result = new List<ListViewItem>();
+            listViewItems.Clear(); // TODO Refresh: old delete, new add
 
             var allProcesses = processes.GetProcessItems;
 
@@ -33,17 +36,21 @@ namespace TaskManager_2020
                 {
                     p.ProcessName,
                     p.ProcessId.ToString(),
-                    p.ProcessCpuUsage.ToString(),
-                    p.ProcessRAMUsage.ToString()
+                    //p.GetProcessCpuUsage().ToString(),
+                    //p.GetProcessRAMUsage().ToString()
                 };
 
                 var listViewItem = new ListViewItem(row);
                 listViewItem.Tag = p;
 
-                result.Add(listViewItem);
+                listViewItems.Add(listViewItem);
             }
+        }
 
-            return result;
+        public void RefreshProcessInfo()
+        {
+            if(processes.RefreshProcessList())
+                SetProcessesListView();
         }
     }
 }

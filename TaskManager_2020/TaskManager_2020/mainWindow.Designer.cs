@@ -42,25 +42,26 @@
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taskManager_timer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Processes = new System.Windows.Forms.TabPage();
+            this.processesInfoTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.newTask_btn = new System.Windows.Forms.Button();
             this.EndTask_btn = new System.Windows.Forms.Button();
             this.processes_listView = new System.Windows.Forms.ListView();
-            this.SystemInfo = new System.Windows.Forms.TabPage();
-            this.drives_listView = new System.Windows.Forms.ListView();
+            this.systemInfoTab = new System.Windows.Forms.TabPage();
             this.ramUsage_label = new System.Windows.Forms.Label();
             this.cpuUsage_label = new System.Windows.Forms.Label();
             this.ramUsage_progressBar = new System.Windows.Forms.ProgressBar();
             this.cpuUsage_progressBar = new System.Windows.Forms.ProgressBar();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.drivesInfoTab = new System.Windows.Forms.TabPage();
             this.systemInfo_timer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.drives_listView = new System.Windows.Forms.ListView();
             this.MainWindow_menuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.Processes.SuspendLayout();
+            this.processesInfoTab.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.SystemInfo.SuspendLayout();
+            this.systemInfoTab.SuspendLayout();
+            this.drivesInfoTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainWindow_menuStrip
@@ -162,9 +163,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.Processes);
-            this.tabControl1.Controls.Add(this.SystemInfo);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.processesInfoTab);
+            this.tabControl1.Controls.Add(this.systemInfoTab);
+            this.tabControl1.Controls.Add(this.drivesInfoTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 42);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
@@ -173,18 +174,18 @@
             this.tabControl1.Size = new System.Drawing.Size(1272, 900);
             this.tabControl1.TabIndex = 5;
             // 
-            // Processes
+            // processesInfoTab
             // 
-            this.Processes.Controls.Add(this.panel1);
-            this.Processes.Controls.Add(this.processes_listView);
-            this.Processes.Location = new System.Drawing.Point(4, 33);
-            this.Processes.Margin = new System.Windows.Forms.Padding(6);
-            this.Processes.Name = "Processes";
-            this.Processes.Padding = new System.Windows.Forms.Padding(6);
-            this.Processes.Size = new System.Drawing.Size(1264, 867);
-            this.Processes.TabIndex = 0;
-            this.Processes.Text = "Processes";
-            this.Processes.UseVisualStyleBackColor = true;
+            this.processesInfoTab.Controls.Add(this.panel1);
+            this.processesInfoTab.Controls.Add(this.processes_listView);
+            this.processesInfoTab.Location = new System.Drawing.Point(4, 33);
+            this.processesInfoTab.Margin = new System.Windows.Forms.Padding(6);
+            this.processesInfoTab.Name = "processesInfoTab";
+            this.processesInfoTab.Padding = new System.Windows.Forms.Padding(6);
+            this.processesInfoTab.Size = new System.Drawing.Size(1264, 863);
+            this.processesInfoTab.TabIndex = 0;
+            this.processesInfoTab.Text = "Processes";
+            this.processesInfoTab.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -193,7 +194,7 @@
             this.panel1.Controls.Add(this.newTask_btn);
             this.panel1.Controls.Add(this.EndTask_btn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(6, 776);
+            this.panel1.Location = new System.Drawing.Point(6, 772);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1252, 85);
@@ -239,35 +240,20 @@
             this.processes_listView.UseCompatibleStateImageBehavior = false;
             this.processes_listView.View = System.Windows.Forms.View.Details;
             // 
-            // SystemInfo
+            // systemInfoTab
             // 
-            this.SystemInfo.Controls.Add(this.drives_listView);
-            this.SystemInfo.Controls.Add(this.ramUsage_label);
-            this.SystemInfo.Controls.Add(this.cpuUsage_label);
-            this.SystemInfo.Controls.Add(this.ramUsage_progressBar);
-            this.SystemInfo.Controls.Add(this.cpuUsage_progressBar);
-            this.SystemInfo.Location = new System.Drawing.Point(4, 33);
-            this.SystemInfo.Margin = new System.Windows.Forms.Padding(6);
-            this.SystemInfo.Name = "SystemInfo";
-            this.SystemInfo.Padding = new System.Windows.Forms.Padding(6);
-            this.SystemInfo.Size = new System.Drawing.Size(1264, 863);
-            this.SystemInfo.TabIndex = 1;
-            this.SystemInfo.Text = "System info";
-            this.SystemInfo.UseVisualStyleBackColor = true;
-            // 
-            // drives_listView
-            // 
-            this.drives_listView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.drives_listView.FullRowSelect = true;
-            this.drives_listView.GridLines = true;
-            this.drives_listView.HideSelection = false;
-            this.drives_listView.Location = new System.Drawing.Point(6, 205);
-            this.drives_listView.Margin = new System.Windows.Forms.Padding(6);
-            this.drives_listView.Name = "drives_listView";
-            this.drives_listView.Size = new System.Drawing.Size(1252, 652);
-            this.drives_listView.TabIndex = 4;
-            this.drives_listView.UseCompatibleStateImageBehavior = false;
-            this.drives_listView.View = System.Windows.Forms.View.Details;
+            this.systemInfoTab.Controls.Add(this.ramUsage_label);
+            this.systemInfoTab.Controls.Add(this.cpuUsage_label);
+            this.systemInfoTab.Controls.Add(this.ramUsage_progressBar);
+            this.systemInfoTab.Controls.Add(this.cpuUsage_progressBar);
+            this.systemInfoTab.Location = new System.Drawing.Point(4, 33);
+            this.systemInfoTab.Margin = new System.Windows.Forms.Padding(6);
+            this.systemInfoTab.Name = "systemInfoTab";
+            this.systemInfoTab.Padding = new System.Windows.Forms.Padding(6);
+            this.systemInfoTab.Size = new System.Drawing.Size(1264, 863);
+            this.systemInfoTab.TabIndex = 1;
+            this.systemInfoTab.Text = "System info";
+            this.systemInfoTab.UseVisualStyleBackColor = true;
             // 
             // ramUsage_label
             // 
@@ -307,20 +293,35 @@
             this.cpuUsage_progressBar.Step = 1;
             this.cpuUsage_progressBar.TabIndex = 0;
             // 
-            // tabPage1
+            // drivesInfoTab
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1264, 863);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.drivesInfoTab.Controls.Add(this.drives_listView);
+            this.drivesInfoTab.Location = new System.Drawing.Point(4, 33);
+            this.drivesInfoTab.Name = "drivesInfoTab";
+            this.drivesInfoTab.Padding = new System.Windows.Forms.Padding(3);
+            this.drivesInfoTab.Size = new System.Drawing.Size(1264, 863);
+            this.drivesInfoTab.TabIndex = 2;
+            this.drivesInfoTab.Text = "Drives info";
+            this.drivesInfoTab.UseVisualStyleBackColor = true;
             // 
             // systemInfo_timer
             // 
             this.systemInfo_timer.Enabled = true;
             this.systemInfo_timer.Tick += new System.EventHandler(this.systemInfo_timer_Tick);
+            // 
+            // drives_listView
+            // 
+            this.drives_listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drives_listView.FullRowSelect = true;
+            this.drives_listView.GridLines = true;
+            this.drives_listView.HideSelection = false;
+            this.drives_listView.Location = new System.Drawing.Point(3, 3);
+            this.drives_listView.Margin = new System.Windows.Forms.Padding(6);
+            this.drives_listView.Name = "drives_listView";
+            this.drives_listView.Size = new System.Drawing.Size(1258, 857);
+            this.drives_listView.TabIndex = 5;
+            this.drives_listView.UseCompatibleStateImageBehavior = false;
+            this.drives_listView.View = System.Windows.Forms.View.Details;
             // 
             // MainWindow
             // 
@@ -337,11 +338,12 @@
             this.MainWindow_menuStrip.ResumeLayout(false);
             this.MainWindow_menuStrip.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.Processes.ResumeLayout(false);
-            this.Processes.PerformLayout();
+            this.processesInfoTab.ResumeLayout(false);
+            this.processesInfoTab.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.SystemInfo.ResumeLayout(false);
-            this.SystemInfo.PerformLayout();
+            this.systemInfoTab.ResumeLayout(false);
+            this.systemInfoTab.PerformLayout();
+            this.drivesInfoTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,20 +364,20 @@
         private System.Windows.Forms.ToolStripMenuItem fastToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage Processes;
+        private System.Windows.Forms.TabPage processesInfoTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button EndTask_btn;
         private System.Windows.Forms.ListView processes_listView;
-        private System.Windows.Forms.TabPage SystemInfo;
+        private System.Windows.Forms.TabPage systemInfoTab;
         private System.Windows.Forms.Label ramUsage_label;
         private System.Windows.Forms.Label cpuUsage_label;
         private System.Windows.Forms.ProgressBar ramUsage_progressBar;
         private System.Windows.Forms.ProgressBar cpuUsage_progressBar;
         private System.Windows.Forms.Timer systemInfo_timer;
         private System.Windows.Forms.Button newTask_btn;
-        private System.Windows.Forms.ListView drives_listView;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage drivesInfoTab;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ListView drives_listView;
     }
 }
 

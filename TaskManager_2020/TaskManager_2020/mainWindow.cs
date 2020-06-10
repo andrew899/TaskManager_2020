@@ -73,9 +73,9 @@ namespace TaskManager_2020
         {
             SetProcessListViewColumns(processes.ColumnNames);
 
-            var processesToView = processes.GetAllProcess();
+            processes.SetProcessesListView();
             
-            SetProcessInfoToView(processesToView);
+            SetProcessInfoToView(processes.ListViewItems);
         }
 
         private void SetProcessListViewColumns(string[] columnNames)
@@ -227,7 +227,7 @@ namespace TaskManager_2020
         // Timers
         private void taskManagerTimer_Tick(object sender, EventArgs e)
         {
-            //GetProcessesToListView();
+            GetProcessesToListView();
         }
 
         private void systemInfo_timer_Tick(object sender, EventArgs e)

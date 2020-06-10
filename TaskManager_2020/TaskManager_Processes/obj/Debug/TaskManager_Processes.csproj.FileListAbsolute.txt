@@ -1,0 +1,5 @@
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_Processes\bin\Debug\TaskManager_Processes.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_Processes\bin\Debug\TaskManager_Processes.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_Processes\obj\Debug\TaskManager_Processes.csprojAssemblyReference.cache
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_Processes\obj\Debug\TaskManager_Processes.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_Processes\obj\Debug\TaskManager_Processes.pdb

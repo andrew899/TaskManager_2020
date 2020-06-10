@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using TaskManager_Drives;
 
 namespace TaskManager_2020
 {
@@ -21,11 +22,11 @@ namespace TaskManager_2020
 
         public List<ListViewItem> GetListAllDrives()
         {
+            DrivesManager drivesManager = new DrivesManager();
+
             List<ListViewItem> result = new List<ListViewItem>();
 
-            var allDrives = DriveInfo.GetDrives();
-
-            foreach (var d in allDrives)
+            foreach (var d in drivesManager.DriveItems)
             {
                 if (d.IsReady == false)
                     continue;

@@ -74,13 +74,13 @@ namespace TaskManager_Processes
                 _ = processItems.Remove(item);
         }
 
-        public void RefreshProcessList()
+        public bool RefreshProcessList()
         {
             var processesIdInList =  processItems.Select(p => p.ProcessId);
             var currentProcessesId = processes.Select(p => p.Id);
 
-            if(processesIdInList.Equals(currentProcessesId))
-                return;
+            if(CheckProcessesById(processesIdInList, currentProcessesId))
+                return false; // no need to refresh
 
             var processesToDeleteFromList = processesIdInList.Except(currentProcessesId);
 
@@ -95,6 +95,13 @@ namespace TaskManager_Processes
             {
                 AddProcessToListById(id);
             }
+
+            return true; // resfresh done
+        }
+
+        public bool CheckProcessesById(IEnumerable<int> processesInList, IEnumerable<int> processesCurrent)
+        {
+            return processesInList.Equals(processesCurrent);
         }
     }
 }

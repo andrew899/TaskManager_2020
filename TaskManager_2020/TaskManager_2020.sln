@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager_2020", "TaskMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager_Processes", "TaskManager_Processes\TaskManager_Processes.csproj", "{256FE186-E34D-4C69-8648-1D1BC6ABC475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager_Drives", "DrivesManager\TaskManager_Drives.csproj", "{ADB4AD2E-F229-480D-BE5F-7BFE51395D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{256FE186-E34D-4C69-8648-1D1BC6ABC475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{256FE186-E34D-4C69-8648-1D1BC6ABC475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{256FE186-E34D-4C69-8648-1D1BC6ABC475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB4AD2E-F229-480D-BE5F-7BFE51395D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB4AD2E-F229-480D-BE5F-7BFE51395D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB4AD2E-F229-480D-BE5F-7BFE51395D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB4AD2E-F229-480D-BE5F-7BFE51395D87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

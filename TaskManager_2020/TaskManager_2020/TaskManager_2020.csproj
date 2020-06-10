@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrivesManager\TaskManager_Drives.csproj">
+      <Project>{adb4ad2e-f229-480d-be5f-7bfe51395d87}</Project>
+      <Name>TaskManager_Drives</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager_Processes\TaskManager_Processes.csproj">
       <Project>{256fe186-e34d-4c69-8648-1d1bc6abc475}</Project>
       <Name>TaskManager_Processes</Name>

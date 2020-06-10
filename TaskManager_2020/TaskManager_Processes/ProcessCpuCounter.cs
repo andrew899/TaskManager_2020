@@ -21,6 +21,10 @@ namespace TaskManager_Processes
 
         public static string GetInstanceNameForProcessId(int processId)
         {
+            var isRunning = Process.GetProcesses().Select(p => p.Id == processId).First();
+            if (isRunning == false)
+                return null;
+
             var process = Process.GetProcessById(processId);
             string processName = Path.GetFileNameWithoutExtension(process.ProcessName);
 

@@ -1,0 +1,5 @@
+D:\Repos\TaskManager_2020\TaskManager_2020\DrivesManager\bin\Debug\DrivesManager.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\DrivesManager\bin\Debug\DrivesManager.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\DrivesManager\obj\Debug\TaskManager_Drives.csprojAssemblyReference.cache
+D:\Repos\TaskManager_2020\TaskManager_2020\DrivesManager\obj\Debug\DrivesManager.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\DrivesManager\obj\Debug\DrivesManager.pdb
