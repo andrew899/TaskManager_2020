@@ -15,8 +15,8 @@ namespace TaskManager_Processes
 
         public string ProcessName => process.ProcessName;
         //public DateTime StartTime => process.StartTime;
-        public ProcessThreadCollection Threads => process.Threads;
-        public long WorkingSet64 => process.WorkingSet64 / (1024*1024);
+        public int Threads => process.Threads.Count;
+        public double WorkingSet64 => process.WorkingSet64 / (1024.0*1024);
 
         public void Kill() => process.Kill();
 

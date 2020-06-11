@@ -48,7 +48,17 @@ namespace TaskManager_Processes
 
             AddProcessToList(newProcesses);
             
-            var newItems = processItemsCurrent.Where(p => newIds.Contains(p.Id)).ToList();
+            return GetNewProcessItems(newProcesses);
+        }
+
+        private List<ProcessItem> GetNewProcessItems(Process[] processesIn)
+        {
+            var newItems = new List<ProcessItem>();
+
+            foreach (var p in processesIn)
+            {
+                newItems.Add(new ProcessItem(p));
+            }
 
             return newItems;
         }

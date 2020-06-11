@@ -227,20 +227,26 @@
             // ProcessId
             // 
             this.ProcessId.AspectName = "Id";
+            this.ProcessId.Groupable = false;
             this.ProcessId.Text = "Id";
+            this.ProcessId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ProcessId.Width = 100;
             // 
             // Threads
             // 
             this.Threads.AspectName = "Threads";
+            this.Threads.Groupable = false;
             this.Threads.Text = "Threads";
+            this.Threads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Threads.Width = 100;
             // 
             // AllocatedMemory
             // 
             this.AllocatedMemory.AspectName = "WorkingSet64";
-            this.AllocatedMemory.AspectToStringFormat = "“{0:#,##0.0}”";
+            this.AllocatedMemory.AspectToStringFormat = "{0:#,##0.0}";
+            this.AllocatedMemory.Groupable = false;
             this.AllocatedMemory.Text = "Allocated memory";
+            this.AllocatedMemory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.AllocatedMemory.Width = 200;
             // 
             // panel1
