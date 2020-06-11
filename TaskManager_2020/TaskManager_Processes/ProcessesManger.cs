@@ -32,6 +32,8 @@ namespace TaskManager_Processes
                 
                 var oldItems = processItemsCurrent.Where(pi => oldIds.Contains(pi.Id)).ToList();
 
+                DeleteProcessFromList(oldItems);
+
                 return oldItems;
             }
 
@@ -127,6 +129,16 @@ namespace TaskManager_Processes
         private void DeleteProcessFromList(Process[] processesToDelete)
         {
             var deleteIds = processesToDelete.Select(p => p.Id);
+
+            foreach (var id in deleteIds)
+            {
+                DeleteProcessFromListById(id);
+            }
+        }
+
+        private void DeleteProcessFromList(List<ProcessItem> itemsToDelete)
+        {
+            var deleteIds = itemsToDelete.Select(p => p.Id);
 
             foreach (var id in deleteIds)
             {

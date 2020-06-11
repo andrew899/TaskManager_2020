@@ -94,8 +94,9 @@ namespace TaskManager_2020
                     int id;
                     if(Int32.TryParse(process, out id))
                         processes.EndProcess(id);
-                }
 
+                    processes_objectListView.SelectedItems[i].Remove();
+                }
             }
             catch (Exception ex)
             {
@@ -218,8 +219,11 @@ namespace TaskManager_2020
 
         private void RefreshListView()
         {
-            processes_objectListView.RemoveObjects(processes.processItemsOld);
-            processes_objectListView.AddObjects(processes.processItemsNew);
+            var itemsToDelete = processes.processItemsOld;
+            processes_objectListView.RemoveObjects(itemsToDelete);
+
+            var itemsToAdd = processes.processItemsNew;
+            processes_objectListView.AddObjects(itemsToAdd);
         }
 
         private void processesInfoTab_Click(object sender, EventArgs e)

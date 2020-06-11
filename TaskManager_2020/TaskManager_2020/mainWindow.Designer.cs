@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MainWindow_menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +56,7 @@
             this.newTask_btn = new System.Windows.Forms.Button();
             this.EndTask_btn = new System.Windows.Forms.Button();
             this.systemInfoTab = new System.Windows.Forms.TabPage();
+            this.CpuAndRamUsage_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ramUsage_label = new System.Windows.Forms.Label();
             this.cpuUsage_label = new System.Windows.Forms.Label();
             this.ramUsage_progressBar = new System.Windows.Forms.ProgressBar();
@@ -63,7 +64,6 @@
             this.drivesInfoTab = new System.Windows.Forms.TabPage();
             this.drives_listView = new System.Windows.Forms.ListView();
             this.systemInfo_timer = new System.Windows.Forms.Timer(this.components);
-            this.CpuAndRamUsage_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.columnButtonRenderer1 = new BrightIdeasSoftware.ColumnButtonRenderer();
             this.MainWindow_menuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -71,8 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.processes_objectListView)).BeginInit();
             this.panel1.SuspendLayout();
             this.systemInfoTab.SuspendLayout();
-            this.drivesInfoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CpuAndRamUsage_chart)).BeginInit();
+            this.drivesInfoTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainWindow_menuStrip
@@ -218,6 +218,7 @@
             this.processes_objectListView.GridLines = true;
             this.processes_objectListView.HideSelection = false;
             this.processes_objectListView.Location = new System.Drawing.Point(6, 6);
+            this.processes_objectListView.MultiSelect = false;
             this.processes_objectListView.Name = "processes_objectListView";
             this.processes_objectListView.ShowGroups = false;
             this.processes_objectListView.Size = new System.Drawing.Size(1252, 766);
@@ -309,6 +310,29 @@
             this.systemInfoTab.Text = "System info";
             this.systemInfoTab.UseVisualStyleBackColor = true;
             // 
+            // CpuAndRamUsage_chart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.CpuAndRamUsage_chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CpuAndRamUsage_chart.Legends.Add(legend2);
+            this.CpuAndRamUsage_chart.Location = new System.Drawing.Point(20, 163);
+            this.CpuAndRamUsage_chart.Name = "CpuAndRamUsage_chart";
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "CPU";
+            series4.BorderWidth = 3;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "RAM";
+            this.CpuAndRamUsage_chart.Series.Add(series3);
+            this.CpuAndRamUsage_chart.Series.Add(series4);
+            this.CpuAndRamUsage_chart.Size = new System.Drawing.Size(1224, 503);
+            this.CpuAndRamUsage_chart.TabIndex = 4;
+            // 
             // ramUsage_label
             // 
             this.ramUsage_label.AutoSize = true;
@@ -378,29 +402,6 @@
             this.systemInfo_timer.Interval = 5000;
             this.systemInfo_timer.Tick += new System.EventHandler(this.systemInfo_timer_Tick);
             // 
-            // CpuAndRamUsage_chart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.CpuAndRamUsage_chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.CpuAndRamUsage_chart.Legends.Add(legend1);
-            this.CpuAndRamUsage_chart.Location = new System.Drawing.Point(20, 163);
-            this.CpuAndRamUsage_chart.Name = "CpuAndRamUsage_chart";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "CPU";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "RAM";
-            this.CpuAndRamUsage_chart.Series.Add(series1);
-            this.CpuAndRamUsage_chart.Series.Add(series2);
-            this.CpuAndRamUsage_chart.Size = new System.Drawing.Size(1224, 503);
-            this.CpuAndRamUsage_chart.TabIndex = 4;
-            // 
             // columnButtonRenderer1
             // 
             this.columnButtonRenderer1.ButtonPadding = new System.Drawing.Size(10, 10);
@@ -426,8 +427,8 @@
             this.panel1.ResumeLayout(false);
             this.systemInfoTab.ResumeLayout(false);
             this.systemInfoTab.PerformLayout();
-            this.drivesInfoTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CpuAndRamUsage_chart)).EndInit();
+            this.drivesInfoTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,0 +1,16 @@
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\TaskManager_2020.exe.config
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\TaskManager_2020.exe
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\TaskManager_2020.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\DrivesManager.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\ObjectListView.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\TaskManager_Processes.dll
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\DrivesManager.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\TaskManager_Processes.pdb
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\bin\Release\ObjectListView.xml
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.csprojAssemblyReference.cache
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.Properties.Resources.resources
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.MainWindow.resources
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.csproj.GenerateResource.cache
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.csproj.CopyComplete
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.exe
+D:\Repos\TaskManager_2020\TaskManager_2020\TaskManager_2020\obj\Release\TaskManager_2020.pdb
