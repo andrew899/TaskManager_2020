@@ -11,46 +11,13 @@ namespace TaskManager_2020
 {
     public class ProcessesInfo
     {
-        private ProcessesManger processes = new ProcessesManger();
+        private static ProcessesManger processes = new ProcessesManger();
 
-        private List<ListViewItem> listViewItems = new List<ListViewItem>();
-        public List<ListViewItem> ListViewItems => listViewItems;
+        public List<ProcessItem> processItems => processes.ProcessItemsCurrent;
+        public List<ProcessItem> processItemsNew => processes.GetNewProcessItems();
+        public List<ProcessItem> processItemsOld => processes.GetOldProcessItems();
 
-        public string[] ColumnNames = new string[]
-                {
-                    "Name",
-                    "Id",
-                    "CPU Usage",
-                    "RAM Usage"
-                };
-
-        public void SetProcessesListView()
-        {
-            listViewItems.Clear(); // TODO Refresh: old delete, new add
-
-            var allProcesses = processes.GetProcessItems;
-
-            foreach (var p in allProcesses)
-            {
-                var row = new string[]
-                {
-                    p.ProcessName,
-                    p.ProcessId.ToString(),
-                    //p.GetProcessCpuUsage().ToString(),
-                    //p.GetProcessRAMUsage().ToString()
-                };
-
-                var listViewItem = new ListViewItem(row);
-                listViewItem.Tag = p;
-
-                listViewItems.Add(listViewItem);
-            }
-        }
-
-        public void RefreshProcessInfo()
-        {
-            if(processes.RefreshProcessList())
-                SetProcessesListView();
-        }
+        public void NewProcess(string path) => processes.StartNewProcess(path);
+        public void EndProcess(int id) => processes.CloseProcess(id);
     }
 }

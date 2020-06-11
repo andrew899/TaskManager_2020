@@ -9,17 +9,48 @@ namespace TaskManager_Processes
 {
     public class ProcessesManger
     {
-        private List<ProcessItem> processItems = new List<ProcessItem>();
-        public List<ProcessItem> GetProcessItems => processItems;
+        private Process[] processesCurrent => Process.GetProcesses();
 
-        private Process[] processes => Process.GetProcesses();
-        
+        private List<ProcessItem> processItemsCurrent = new List<ProcessItem>();
+
+        public List<ProcessItem> ProcessItemsCurrent => processItemsCurrent;
+
         public ProcessesManger()
         {
-            foreach(var proc in processes)
+            foreach(var proc in processesCurrent)
             {
                 AddProcessToList(proc);
             }
+        }
+
+        public List<ProcessItem> GetOldProcessItems()
+            {
+                var itemsIds = processItemsCurrent.Select(p => p.Id);
+                var processesIds = processesCurrent.Select(pc => pc.Id);
+                
+                var oldIds = itemsIds.Except(processesIds);
+                
+                var oldItems = processItemsCurrent.Where(pi => oldIds.Contains(pi.Id)).ToList();
+
+                return oldItems;
+            }
+
+        public List<ProcessItem> GetNewProcessItems()
+        {
+            var currentProcs = processesCurrent;
+
+            var itemsIds = processItemsCurrent.Select(p => p.Id);
+            var processesIds = processesCurrent.Select(pc => pc.Id);
+
+            var newIds = processesIds.Except(itemsIds);
+
+            var newProcesses = currentProcs.Where(cp => newIds.Contains(cp.Id)).ToArray();
+
+            AddProcessToList(newProcesses);
+            
+            var newItems = processItemsCurrent.Where(p => newIds.Contains(p.Id)).ToList();
+
+            return newItems;
         }
 
         public void StartNewProcess(string filePath)
@@ -27,21 +58,33 @@ namespace TaskManager_Processes
             if (string.IsNullOrEmpty(filePath) == false)
                 Process.Start(filePath);
 
-            RefreshProcessList();
+            //RefreshProcessList();
         }
 
         public void CloseProcess(Process processToClose)
         {
             processToClose.Kill();
 
-            RefreshProcessList();
+            //RefreshProcessList();
+        }
+
+        public void CloseProcess(int id)
+        {
+            var processToClose = processItemsCurrent.Where(p => p.Id == id).FirstOrDefault();
+
+            if(processToClose == null)
+                return;
+            
+            processToClose.Kill();
+
+            //RefreshProcessList();
         }
 
         private bool CheckProcessInList(Process processToCheck)
         {
             bool result = false;
 
-            if(processes.Contains(processToCheck))
+            if(processesCurrent.Contains(processToCheck))
                 result = true;
 
             return result;
@@ -52,7 +95,18 @@ namespace TaskManager_Processes
             if(CheckProcessInList(processIn))
                 return;
 
-            processItems.Add(new ProcessItem(processIn));
+            processItemsCurrent.Add(new ProcessItem(processIn));
+        } 
+        
+        private void AddProcessToList(Process[] processesIn)
+        {
+            //if(CheckProcessInList(processIn))
+            //    return;
+
+            foreach (var proc in processesIn)
+            {
+                processItemsCurrent.Add(new ProcessItem(proc));
+            }
         }
 
         private void AddProcessToListById(int id)
@@ -60,29 +114,32 @@ namespace TaskManager_Processes
             AddProcessToList(Process.GetProcessById(id));
         }
 
-        private void DeleteProcessFromList(Process processToDelete)
+        private void DeleteProcessFromList(Process[] processesToDelete)
         {
-            var item = processItems.Where(p => p.ProcessId == processToDelete.Id).First();
-            if (item != null)
-                _ = processItems.Remove(item);
+            var deleteIds = processesToDelete.Select(p => p.Id);
+
+            foreach (var id in deleteIds)
+            {
+                DeleteProcessFromListById(id);
+            }
         }
 
         private void DeleteProcessFromListById(int id)
         {
-            var item = processItems.Where(p => p.ProcessId == id).First();
+            var item = processItemsCurrent.Where(p => p.Id == id).First();
             if (item != null)
-                _ = processItems.Remove(item);
+                _ = processItemsCurrent.Remove(item);
         }
 
         public bool RefreshProcessList()
         {
-            var processesIdInList =  processItems.Select(p => p.ProcessId);
-            var currentProcessesId = processes.Select(p => p.Id);
+            var processesIdInList =  processItemsCurrent.Select(p => p.Id);
+            var currentProcessesId = processesCurrent.Select(p => p.Id);
 
             if(CheckProcessesById(processesIdInList, currentProcessesId))
                 return false; // no need to refresh
 
-            var processesToDeleteFromList = processesIdInList.Except(currentProcessesId);
+            var processesToDeleteFromList = processesIdInList.Except(currentProcessesId).ToArray();
 
             foreach (var id in processesToDeleteFromList)
             {

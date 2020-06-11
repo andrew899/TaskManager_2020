@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
+using TaskManager_Processes;
 
 namespace TaskManager_2020
 {
@@ -14,11 +15,16 @@ namespace TaskManager_2020
             InitializeComponent();
 
             CheckDrivesInfo();
+
+            CheckCPUPerformanceInfo();
+            CheckRAMPerformanceInfo();
+
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            GetProcessesToListView();
+
+            processes_objectListView.SetObjects(processes.processItems);
         }
 
         // Systeminfo
@@ -43,7 +49,7 @@ namespace TaskManager_2020
 
         private void SetDrivesListViewColumns(string[] columnNames)
         {
-            if (processes_listView.Columns.Count > 0)
+            if (drives_listView.Columns.Count > 0)
                 return;
 
             foreach (var name in columnNames)
@@ -69,54 +75,21 @@ namespace TaskManager_2020
         }
 
         // Processes
-        private void GetProcessesToListView()
-        {
-            SetProcessListViewColumns(processes.ColumnNames);
-
-            processes.SetProcessesListView();
-            
-            SetProcessInfoToView(processes.ListViewItems);
-        }
-
-        private void SetProcessListViewColumns(string[] columnNames)
-        {
-            if(processes_listView.Items.Count > 0)
-                return;
-
-            foreach(var name in columnNames)
-            {
-                processes_listView.Columns.Add(name, 100, HorizontalAlignment.Center);
-            }
-
-            processes_listView.FullRowSelect = true;
-            processes_listView.GridLines = true;
-            processes_listView.View = View.Details;
-        }
-
-        private void SetProcessInfoToView(List<ListViewItem> list)
-        {
-            processes_listView.Items.Clear();
-
-            foreach (var item in list)
-            {
-                processes_listView.Items.Add(item);
-            }
-
-            processes_listView.Sorting = SortOrder.Ascending;
-
-            processes_listView.Show();
-        }
-        
+       
+       
         // Menu
         private void EndTask_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                for (var i = 0; i < processes_listView.SelectedItems.Count; i++)
+                var objectsToClose = processes_objectListView.SelectedItems;
+
+                for (var i = 0; i < objectsToClose.Count; i++)
                 {
-                    var process = processes_listView.SelectedItems[i].Tag as Process;
-                    if(process != null)
-                        process.Kill();
+                    var process = processes_objectListView.SelectedItems[i].SubItems[1].Text;
+                    int id;
+                    if(Int32.TryParse(process, out id))
+                        processes.EndProcess(id);
                 }
 
             }
@@ -124,6 +97,8 @@ namespace TaskManager_2020
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            RefreshListView();
         }
 
         private void newTask_btn_Click(object sender, EventArgs e)
@@ -141,13 +116,14 @@ namespace TaskManager_2020
             if(string.IsNullOrEmpty(filePath) == false)
                 Process.Start(filePath);
 
-            GetProcessesToListView();
+            RefreshListView();
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GetProcessesToListView();
-            
+            processes_objectListView.RemoveObjects(processes.processItemsOld);
+            processes_objectListView.AddObjects(processes.processItemsNew);
+
             CheckDrivesInfo();
         }
 
@@ -227,7 +203,7 @@ namespace TaskManager_2020
         // Timers
         private void taskManagerTimer_Tick(object sender, EventArgs e)
         {
-            GetProcessesToListView();
+            RefreshListView();
         }
 
         private void systemInfo_timer_Tick(object sender, EventArgs e)
@@ -236,5 +212,14 @@ namespace TaskManager_2020
             CheckRAMPerformanceInfo();
         }
 
+        private void RefreshListView()
+        {
+            processes_objectListView.RemoveObjects(processes.processItemsOld);
+            processes_objectListView.AddObjects(processes.processItemsNew);
+        }
+
+        private void processesInfoTab_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

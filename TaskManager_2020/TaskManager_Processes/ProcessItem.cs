@@ -11,9 +11,15 @@ namespace TaskManager_Processes
     {
         private readonly Process process;
 
-        public int ProcessId => process.Id;
+        public int Id => process.Id;
 
         public string ProcessName => process.ProcessName;
+        //public DateTime StartTime => process.StartTime;
+        public ProcessThreadCollection Threads => process.Threads;
+        public long WorkingSet64 => process.WorkingSet64 / (1024*1024);
+
+        public void Kill() => process.Kill();
+
 
         private string instanceName = string.Empty;
 
@@ -75,7 +81,7 @@ namespace TaskManager_Processes
 
         private bool IsRuning()
         {
-            var isRunning = Process.GetProcesses().Select(p => p.Id == ProcessId).First();
+            var isRunning = Process.GetProcesses().Select(p => p.Id == Id).First();
             
             return isRunning;
         }
