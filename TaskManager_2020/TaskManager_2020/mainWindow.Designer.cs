@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MainWindow_menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +63,8 @@
             this.drivesInfoTab = new System.Windows.Forms.TabPage();
             this.drives_listView = new System.Windows.Forms.ListView();
             this.systemInfo_timer = new System.Windows.Forms.Timer(this.components);
+            this.CpuAndRamUsage_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.columnButtonRenderer1 = new BrightIdeasSoftware.ColumnButtonRenderer();
             this.MainWindow_menuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.processesInfoTab.SuspendLayout();
@@ -66,6 +72,7 @@
             this.panel1.SuspendLayout();
             this.systemInfoTab.SuspendLayout();
             this.drivesInfoTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CpuAndRamUsage_chart)).BeginInit();
             this.SuspendLayout();
             // 
             // MainWindow_menuStrip
@@ -243,7 +250,7 @@
             // AllocatedMemory
             // 
             this.AllocatedMemory.AspectName = "WorkingSet64";
-            this.AllocatedMemory.AspectToStringFormat = "{0:#,##0.0}";
+            this.AllocatedMemory.AspectToStringFormat = "{0:#,##0.0 MB}";
             this.AllocatedMemory.Groupable = false;
             this.AllocatedMemory.Text = "Allocated memory";
             this.AllocatedMemory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -288,6 +295,7 @@
             // 
             // systemInfoTab
             // 
+            this.systemInfoTab.Controls.Add(this.CpuAndRamUsage_chart);
             this.systemInfoTab.Controls.Add(this.ramUsage_label);
             this.systemInfoTab.Controls.Add(this.cpuUsage_label);
             this.systemInfoTab.Controls.Add(this.ramUsage_progressBar);
@@ -370,6 +378,33 @@
             this.systemInfo_timer.Interval = 5000;
             this.systemInfo_timer.Tick += new System.EventHandler(this.systemInfo_timer_Tick);
             // 
+            // CpuAndRamUsage_chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.CpuAndRamUsage_chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.CpuAndRamUsage_chart.Legends.Add(legend1);
+            this.CpuAndRamUsage_chart.Location = new System.Drawing.Point(20, 163);
+            this.CpuAndRamUsage_chart.Name = "CpuAndRamUsage_chart";
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "CPU";
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "RAM";
+            this.CpuAndRamUsage_chart.Series.Add(series1);
+            this.CpuAndRamUsage_chart.Series.Add(series2);
+            this.CpuAndRamUsage_chart.Size = new System.Drawing.Size(1224, 503);
+            this.CpuAndRamUsage_chart.TabIndex = 4;
+            // 
+            // columnButtonRenderer1
+            // 
+            this.columnButtonRenderer1.ButtonPadding = new System.Drawing.Size(10, 10);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -392,6 +427,7 @@
             this.systemInfoTab.ResumeLayout(false);
             this.systemInfoTab.PerformLayout();
             this.drivesInfoTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CpuAndRamUsage_chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,6 +465,8 @@
         private BrightIdeasSoftware.OLVColumn ProcessId;
         private BrightIdeasSoftware.OLVColumn Threads;
         private BrightIdeasSoftware.OLVColumn AllocatedMemory;
+        private System.Windows.Forms.DataVisualization.Charting.Chart CpuAndRamUsage_chart;
+        private BrightIdeasSoftware.ColumnButtonRenderer columnButtonRenderer1;
     }
 }
 

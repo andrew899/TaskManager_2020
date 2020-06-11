@@ -30,14 +30,18 @@ namespace TaskManager_2020
         // Systeminfo
         private void CheckCPUPerformanceInfo()
         {
-            cpuUsage_progressBar.Value = CPUPerformance.GetCPUTatalUsageInPercent;
+            var value = CPUPerformance.GetCPUTatalUsageInPercent;
+            cpuUsage_progressBar.Value = value;
             cpuUsage_label.Text = "CPU usage: " + cpuUsage_progressBar.Value.ToString() + " %";
+            CpuAndRamUsage_chart.Series["CPU"].Points.AddY(value);
         }
         
         private void CheckRAMPerformanceInfo()
         {
-            ramUsage_progressBar.Value = RAMPerformance.GetRamUsage;
+            var value = RAMPerformance.GetRamUsage;
+            ramUsage_progressBar.Value = value;
             ramUsage_label.Text = "RAM usage: " + ramUsage_progressBar.Value.ToString() + " %";
+            CpuAndRamUsage_chart.Series["RAM"].Points.AddY(value);
         }
 
         private void CheckDrivesInfo()
